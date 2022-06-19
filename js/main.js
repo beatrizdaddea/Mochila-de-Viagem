@@ -1,4 +1,4 @@
-const form = document.getElementById("novoItem")
+const form = document.getElementById("novoItem") // retorna a ref do elemento através do ID
 const lista = document.getElementById("lista")
 const itens = JSON.parse(localStorage.getItem("itens")) || []
 
@@ -7,9 +7,9 @@ itens.forEach( (elemento) => {
 } )
 
 form.addEventListener("submit", (evento) => {
-    evento.preventDefault()
+    evento.preventDefault() // cancela o evento se for cancelável, sem parar a propagação do mesmo.
 
-    const nome = evento.target.elements['nome']
+    const nome = evento.target.elements['nome'] 
     const quantidade = evento.target.elements['quantidade']
 
     const existe = itens.find( elemento => elemento.nome === nome.value )
@@ -39,14 +39,14 @@ form.addEventListener("submit", (evento) => {
     quantidade.value = ""
 })
 
-function criaElemento(item) {
-    const novoItem = document.createElement("li")
+function criaElemento(item) { 
+    const novoItem = document.createElement("li") 
     novoItem.classList.add("item")
 
     const numeroItem = document.createElement("strong")
     numeroItem.innerHTML = item.quantidade
-    numeroItem.dataset.id = item.id
-    novoItem.appendChild(numeroItem)
+    numeroItem.dataset.id = item.id // adicionemos dados a elementos HMTL, como se fossem constantes
+    novoItem.appendChild(numeroItem) // insere um elemento criado dentro do outro
     
     novoItem.innerHTML += item.nome
 
@@ -61,7 +61,7 @@ function atualizaElemento(item) {
 
 function botaoDeleta(id) {
     const elementoBotao = document.createElement("button")
-    elementoBotao.innerText = "X"
+    elementoBotao.innerText = "Excluir"
 
     elementoBotao.addEventListener("click", function() {
         deletaElemento(this.parentNode, id)
